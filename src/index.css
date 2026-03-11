@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font imports */
+@font-face {
+  font-family: 'Brandon';
+  src: url('./assets/fonts/Brandon.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Brandon';
+  src: url('./assets/fonts/Brandon-black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Brandon', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+}
+
+.text-pink-600 {
+    --tw-text-opacity: 1;
+    color:#b6236c;
+}
+
+.text-blue-600 {
+    --tw-text-opacity: 1;
+    color:#0099d9;
+}
+
+.to-pink-700 {
+    --tw-gradient-to: #b6236c var(--tw-gradient-to-position);
+}
+
+/* Custom animations for sliding menu */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in-right 0.3s ease-out forwards;
+}
+
+.animate-slide-out {
+  animation: slide-out-right 0.3s ease-in forwards;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.from-pink-600 {
+    --tw-gradient-from: #b6236c var(--tw-gradient-from-position);
+}
+
+button:focus, button:focus-visible, a:focus, a:focus-visible
+{
+  border: 0px;
+  outline: 0px;
+}
+
+.bg-blue-600 {
+    --tw-bg-opacity: 1;
+    background-color: #0099d9;
+}
+
+.bg-pink-600{
+  background-color: #b6236c;
+}
+
+.border-blue-600
+{
+    border-color: #0099d9;;
+}
+
+.hover\:bg-pink-600:hover, .active\:bg-pink-600:active, .focus\:bg-pink-600:focus, .focus-visible\:bg-pink-600:focus-visible {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(182 35 108) !important;
+}
+
+sup, sup a{
+  font-size: 75%;
+  cursor: pointer;
+}
