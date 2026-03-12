@@ -9,12 +9,10 @@ import nextwht from '../assets/images/next-wht.png';
 // keywords to listen for
 const triggers = ['responsible', 'antibiotic', 'use'];
 
-export default function CallToActionPage({ onNext }) {
+export default function AwareCampaignPledge({ onNext }) {
   const [recording, setRecording] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [showSkipButton, setShowSkipButton] = useState(false);
   const recognitionRef = useRef(null);
-  const skipTimerRef = useRef(null);
 
   const startRecognition = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -30,11 +28,6 @@ export default function CallToActionPage({ onNext }) {
 
     recog.onstart = () => {
       setRecording(true);
-      setShowSkipButton(false);
-      // Show skip button after 3 seconds
-      skipTimerRef.current = setTimeout(() => {
-        setShowSkipButton(true);
-      }, 3000);
     };
 
     recog.onresult = (event) => {
@@ -47,16 +40,10 @@ export default function CallToActionPage({ onNext }) {
 
     recog.onend = () => {
       setRecording(false);
-      if (skipTimerRef.current) {
-        clearTimeout(skipTimerRef.current);
-      }
     };
 
     recog.onerror = () => {
       setRecording(false);
-      if (skipTimerRef.current) {
-        clearTimeout(skipTimerRef.current);
-      }
     };
 
     recognitionRef.current = recog;
@@ -114,8 +101,8 @@ export default function CallToActionPage({ onNext }) {
             <span className='relative bg-blue-600 text-white px-8 py-3 text-3xl font-semibold hover:bg-pink-600 focus:bg-pink-600 active:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500'>Click here and say “Responsible Antibiotic Use” <img src={pointer} alt="Campaign participants" style={{position:'absolute', bottom:'-20px', right:'-20px', width:'55px', height:'auto'}} /></span>
           )}
         </button>
-        {/* Skip Button - Visible after 3 seconds of recording */}
-        {recording && showSkipButton && (
+        {/* Skip Button - Visible during recording */}
+        {recording && (
           <div className="mt-6 flex justify-center">
             <button
               onClick={() => {
@@ -124,8 +111,12 @@ export default function CallToActionPage({ onNext }) {
                   recognitionRef.current.stop();
                 }
                 setRecording(false);
-                // Show the congratulations popup
-                setShowPopup(true);
+                setShowPopup(false);
+                // Navigate to next steps
+                if (onNext) {
+                  onNext();
+                  onNext();
+                }
               }}
               className="bg-pink-600 text-white px-8 py-3 text-xl font-semibold hover:bg-blue-600 focus:bg-blue-600 active:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-colors duration-200"
             >

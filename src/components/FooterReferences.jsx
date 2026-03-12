@@ -6,9 +6,9 @@ export default function FooterReferences() {
   ];
 
   return (
-    <footer className="px-6 md:px-20 py-4 text-xs text-gray-600 space-y-1 bg-white mb-5" id="ref">
+    <footer className="px-[3vw] md:px-[7vw] py-[1vh] text-[2vw] sm:text-[1.5vw] md:text-[0.7vw] text-gray-600 bg-white mb-[1vh]" id="ref" style={{lineHeight: 'clamp(12px, 1.5vh, 16px)'}}>
       {references.map((ref, index) => (
-        <p key={index} className="leading-snug" style={{fontWeight:'200'}}>
+        <p key={index} className="leading-snug" style={{fontWeight:'200', marginTop:'0px', marginBottom: 'clamp(4px, 0.5vh, 8px)'}}>
           {ref}
         </p>
       ))}

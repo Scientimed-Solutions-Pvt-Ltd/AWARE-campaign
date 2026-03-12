@@ -10,21 +10,21 @@ export default function PageLayout({ children, onNext, showFooter = true, hideHe
       <div className="flex-1 flex flex-col overflow-y-auto">
         {!hideHeader && <Header />}
 
-        <div className="flex-1 px-6 md:px-20 pt-3 md:pt-3 flex flex-col justify-between">
+        <div className="flex-1 px-[3vw] md:px-[7vw] pt-[2vh] md:pt-[1vh] flex flex-col justify-between">
           {children}
 
           {onNext && (
-            <div className="flex justify-end pt-4 md:pt-8 mb-5">
+            <div className="flex justify-end pt-[3vh] md:pt-[4vh] mb-[2vh]">
               <Button label="Next" imageUrl={nextBlueImg} onClick={onNext} />
             </div>
           )}
         </div>
 
         {showFooter && <FooterReferences />}
-      </div>
 
-      {/* bottom magenta strip */}
-      <div className="h-8 md:h-12 bg-gradient-to-r from-pink-600 to-pink-700 flex-shrink-0"></div>
+        {/* bottom magenta strip */}
+        <div className="h-[3vh] md:h-[4vh] bg-gradient-to-r from-pink-600 to-pink-700 flex-shrink-0"></div>
+      </div>
     </div>
   );
 }

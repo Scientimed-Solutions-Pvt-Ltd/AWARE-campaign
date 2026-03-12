@@ -6,7 +6,7 @@ import product4 from '../assets/images/aa-24.png';
 import product5 from '../assets/images/aa-25.png';
 import abbotbig from '../assets/images/abbot-logo.png';
 
-export default function PortfolioPage({ onNext }) {
+export default function AwareCampaignPortfolio({ onNext }) {
   return (
     <PageLayout showFooter={false} hideHeader={true}>
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center space-y-8">

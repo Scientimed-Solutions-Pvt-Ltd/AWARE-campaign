@@ -30,7 +30,67 @@ html, body, #root {
 
 body {
   font-family: 'Brandon', system-ui, -apple-system, sans-serif;
-  font-size: 16px;
+  /* Responsive font size using viewport units with mobile fallback */
+  font-size: clamp(14px, 2.5vw, 18px);
+}
+
+/* Responsive typography with viewport units */
+@layer utilities {
+  /* Heading sizes */
+  .text-h1 {
+    @apply font-brandon font-bold;
+    font-size: clamp(28px, 6vw, 54px);
+  }
+
+  .text-h2 {
+    @apply font-brandon font-bold;
+    font-size: clamp(24px, 5vw, 42px);
+  }
+
+  .text-h3 {
+    @apply font-brandon font-semibold;
+    font-size: clamp(20px, 4vw, 32px);
+  }
+
+  /* Body text sizes */
+  .text-body-lg {
+    font-size: clamp(18px, 3vw, 28px);
+  }
+
+  .text-body-md {
+    font-size: clamp(16px, 2.5vw, 20px);
+  }
+
+  .text-body-sm {
+    font-size: clamp(14px, 2vw, 16px);
+  }
+
+  .text-body-xs {
+    font-size: clamp(12px, 1.5vw, 14px);
+  }
+
+  /* Responsive spacing */
+  .p-responsive {
+    padding: clamp(12px, 3vw, 32px);
+  }
+
+  .px-responsive {
+    padding-left: clamp(12px, 3vw, 40px);
+    padding-right: clamp(12px, 3vw, 40px);
+  }
+
+  .py-responsive {
+    padding-top: clamp(12px, 2vh, 32px);
+    padding-bottom: clamp(12px, 2vh, 32px);
+  }
+
+  .gap-responsive {
+    gap: clamp(12px, 3vw, 32px);
+  }
+
+  .space-y-responsive > * + * {
+    margin-top: clamp(12px, 3vh, 32px);
+  }
 }
 
 .text-pink-600 {
@@ -104,6 +164,9 @@ button:focus, button:focus-visible, a:focus, a:focus-visible
 .bg-blue-600 {
     --tw-bg-opacity: 1;
     background-color: #0099d9;
+}
+.hover\:bg-blue-600:hover, .active\:bg-blue-600:active, .focus\:bg-blue-600:focus, .focus-visible\:bg-blue-600:focus-visible {
+    background-color: #0099d9 !important;
 }
 
 .bg-pink-600{

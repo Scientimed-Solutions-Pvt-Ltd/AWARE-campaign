@@ -27,21 +27,23 @@ export default function InfoBlock({ icon, text, highlights = [], superscript }) 
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-10">
+    <div className="flex flex-col md:flex-row items-center md:items-center mt-1 sm:mt-3 gap-[0vw] sm:gap-[2vw]">
       {/* Icon with circular container */}
       <div className="flex-shrink-0">
-        <div className="w-40 h-40 md:w-40 md:h-40 rounded-full flex items-center justify-center">
+        <div className="round flex items-center justify-center w-[15vw] h-[15vw] sm:w-[11vw] sm:h-[11vw] md:w-[10vw] md:h-[10vw] lg:w-[11vw] lg:h-[11vw] xl:w-[7vw] xl:h-[7vw]" style={{
+          borderRadius: '50%'
+        }}>
           <img
             src={icon}
             alt="Icon"
-            className="w-40 h-40 md:w-40 md:h-40 object-contain"
+            className="object-contain w-[15vw] h-[15vw] sm:w-[11vw] sm:h-[11vw] md:w-[10vw] md:h-[10vw] lg:w-[11vw] lg:h-[11vw] xl:w-[7vw] xl:h-[7vw]"
           />
         </div>
       </div>
 
       {/* Text content */}
-      <div className="flex-1 pt-1 md:pt-2">
-        <p className="text-3xl md:text-3xl text-gray-700 leading-relaxed font-medium">
+      <div className="flex-1 pt-1 sm:pt-5 md:pt-6 lg:pt-2">
+        <p className="text-[4vw] sm:text-[3.5vw] md:text-[4vw] lg:text-[2.5vw] xl:text-[1.8vw] text-center md:text-left leading-relaxed font-medium">
           {renderTextWithHighlights()}
           {superscript && <sup><a href={`#ref`}>{superscript}</a></sup>}
         </p>

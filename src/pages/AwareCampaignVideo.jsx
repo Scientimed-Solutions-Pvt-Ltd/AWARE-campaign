@@ -1,6 +1,6 @@
 import PageLayout from './PageLayout';
 
-export default function VideoPage({ onNext }) {
+export default function AwareCampaignVideo({ onNext }) {
   return (
     <PageLayout onNext={onNext} showFooter={false}>
       <div className="w-full max-w-4xl mx-auto text-center space-y-4">
