@@ -10,7 +10,7 @@ export default function PageLayout({ children, onNext, showFooter = true, hideHe
       <div className="flex-1 flex flex-col overflow-y-auto">
         {!hideHeader && <Header />}
 
-        <div className="flex-1 px-[3vw] md:px-[7vw] pt-[2vh] md:pt-[1vh] flex flex-col justify-between">
+        <div className="flex-1 px-[3vw] md:px-[7vw] pt-[2vh] md:pt-[1vh] flex flex-col justify-start space-y-1 sm:space-y-2">
           {children}
 
           {onNext && (

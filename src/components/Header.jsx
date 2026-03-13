@@ -36,8 +36,10 @@ export default function Header() {
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflowX = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflowX = 'hidden';
     }
 
     return () => {
@@ -45,23 +47,32 @@ export default function Header() {
     };
   }, [menuOpen]);
 
+  const handleNavigation = (href, e) => {
+    e.preventDefault();
+    window.history.pushState({}, '', href);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    closeMenu();
+  };
+
   const menuItems = [
-    { label: 'Home', href: 'Home.jsx' },
-    { label: 'AWARE Campaign', href: 'AwareCampaignInfo.jsx' },
-    { label: 'AWARE Campaign Video', href: 'AwareCampaignVideo.jsx' },
-    { label: 'AWARE Campaign Pledge', href: 'AwareCampaignPledge.jsx' },
-    { label: 'Portfolio', href: 'AwareCampaignPortfolio.jsx' }
+    { label: 'Home', href: '/' },
+    { label: 'AWARE Campaign', href: '/aware-campaign-info' },
+    { label: 'AWARE Campaign Video', href: '/aware-campaign-video' },
+    { label: 'AWARE Campaign Pledge', href: '/aware-campaign-pledge' },
+    { label: 'AWARE Campaign Portfolio', href: '/portfolio' }
   ];
 
   return (
     <header className="relative flex items-center justify-between px-[2vw] md:px-[7vw] pt-[1.5vh] pb-[0.5vh] bg-white z-50">
       {/* Abbott Logo */}
       <div className="flex-shrink-0">
-        <img
-          src={abbottLogo}
-          alt="Abbott Logo"
-          className="h-[8vh] sm:h-[9vh] md:h-[10vh] lg:h-[11vh] w-auto"
-        />
+        <a href="/" onClick={(e) => handleNavigation('/', e)} className="cursor-pointer">
+          <img
+            src={abbottLogo}
+            alt="Abbott Logo"
+            className="h-[6vh] sm:h-[6vh] md:h-[7vh] lg:h-[9vh] xl:h-[11vh] w-auto"
+          />
+        </a>
       </div>
 
       {/* Desktop Navigation - Hidden on all screen sizes */}
@@ -70,6 +81,7 @@ export default function Header() {
           <a
             key={item.label}
             href={item.href}
+            onClick={(e) => handleNavigation(item.href, e)}
             className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 text-body-md"
           >
             {item.label}
@@ -113,7 +125,7 @@ export default function Header() {
       {/* Sliding Menu - Visible on all screen sizes */}
       <nav
         ref={menuRef}
-        className={`fixed top-0 right-0 h-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed top-0 right-0 h-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 px-2 ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ width: 'clamp(200px, 80vw, 400px)' }}
@@ -139,14 +151,14 @@ export default function Header() {
         </div>
 
         {/* Menu Content */}
-        <div className="flex-1 overflow-y-auto py-[1vh]">
-          <ul className="space-y-[1vh]">
+        <div className="flex-1 overflow-y-auto py-[1vh] px-2">
+          <ul className="space-y-[1vh] px-1">
             {menuItems.map((item, index) => (
               <li key={item.label}>
                 <a
                   href={item.href}
-                  onClick={closeMenu}
-                  className={`block py-[3vh] px-[1.5vw] rounded-lg text-gray-800 hover:bg-blue-50 hover:text-blue-600 font-medium transition-all duration-200 transform ${
+                  onClick={(e) => handleNavigation(item.href, e)}
+                  className={`block py-[2vh] px-[1vw] rounded-lg text-gray-800 hover:bg-blue-50 hover:text-blue-600 font-medium transition-all duration-200 transform ${
                     menuOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
                   }`}
                   style={{

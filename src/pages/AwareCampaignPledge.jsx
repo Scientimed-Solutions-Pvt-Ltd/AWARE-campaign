@@ -62,8 +62,8 @@ export default function AwareCampaignPledge({ onNext }) {
               <img src={popuphdr} alt="Celebration" className="h-auto w-lg" style={{maxHeight:'220px'}} />
             </div>
             <div className="p-8 pt-16 space-y-6">
-              <h2 className="text-5xl font-bold text-pink-600">Congratulations Dr.</h2>
-              <p className="text-3xl text-gray-800">
+              <h2 className="text-3xl md:text-4xl font-bold text-pink-600">Congratulations Dr.</h2>
+              <p className="text-xl md:text-2xl text-gray-800">
                 We are honoured to have you as part of this initiative now.
               </p>
               <button 
@@ -83,48 +83,41 @@ export default function AwareCampaignPledge({ onNext }) {
         </div>
       )}
 
-      <div className="w-full max-w-4xl mx-auto text-center space-y-5">
-        <h1 className="text-4xl sm:text-4xl md:text-5xl font-brandon font-bold leading-snug tracking-tight text-center">
+      <div className="w-full max-w-4xl mx-auto text-center space-y-7 md:space-y-5 lg:space-y-4">
+        <h1 className="text-[5.5vw] sm:text-[2vw] md:text-[5vw] lg:text-[4vw] xl:text-[2.5vw] leading-[0.5] tracking-tight text-center">
           <span className="text-pink-600 font-black">Be a part of initiative of AWARE</span>
           <span className="text-blue-600 font-semibold leading-[1.2]"> campaign and help to prevent antimicrobial resistance</span>
         </h1>
-        <p className="text-3xl mt-7 text-black">
+        <p className="text-[5vw] sm:text-[4vw] md:text-[3vw] lg:text-[2.5vw] xl:text-[1.9vw] leading-[4.5vw] sm:leading-[4.5vw] md:leading-[4vw] lg:leading-[3vw] xl:leading-[2vw] text-black">
           “I support responsible antibiotic use and AMR prevention”
         </p>
         <button
           onClick={startRecognition}
-          className="relative mt-0 py-2 bg-white"
+          className="relative mt-2 py-2 bg-white"
         >
           {recording ? (
-            <img src={recordingImg} alt="Recording" className="h-16 w-auto bg-blue-600" style={{marginTop:'-15px'}} />
+            <div className="flex items-center justify-center gap-4">
+              <img src={recordingImg} alt="Recording" className="h-12 w-auto bg-blue-600" style={{marginTop:'-15px'}} />
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (recognitionRef.current) {
+                    recognitionRef.current.stop();
+                  }
+                  setRecording(false);
+                  setShowPopup(true);
+                }}
+                className="bg-pink-600 text-white px-8 py-2 text-xl font-semibold hover:bg-blue-600 focus:bg-blue-600 active:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-colors duration-200 cursor-pointer"
+                style={{marginTop:'-15px'}}
+              >
+                Skip
+              </span>
+            </div>
           ) : (
-            <span className='relative bg-blue-600 text-white px-8 py-3 text-3xl font-semibold hover:bg-pink-600 focus:bg-pink-600 active:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500'>Click here and say “Responsible Antibiotic Use” <img src={pointer} alt="Campaign participants" style={{position:'absolute', bottom:'-20px', right:'-20px', width:'55px', height:'auto'}} /></span>
+            <span className='relative bg-blue-600 text-white px-8 py-1 sm:py-3 text-xl sm:text-2xl font-semibold hover:bg-pink-600 focus:bg-pink-600 active:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 block '>Click here and say “Responsible Antibiotic Use” <img src={pointer} alt="Campaign participants" style={{position:'absolute', bottom:'-20px', right:'-20px', width:'55px', height:'auto'}} /></span>
           )}
         </button>
-        {/* Skip Button - Visible during recording */}
-        {recording && (
-          <div className="mt-6 flex justify-center">
-            <button
-              onClick={() => {
-                // Stop the recording
-                if (recognitionRef.current) {
-                  recognitionRef.current.stop();
-                }
-                setRecording(false);
-                setShowPopup(false);
-                // Navigate to next steps
-                if (onNext) {
-                  onNext();
-                  onNext();
-                }
-              }}
-              className="bg-pink-600 text-white px-8 py-3 text-xl font-semibold hover:bg-blue-600 focus:bg-blue-600 active:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-colors duration-200"
-            >
-              Skip
-            </button>
-          </div>
-        )}
-        <img src={groupPhoto} alt="Campaign participants" className="w-full h-auto mt-6 text-center" style={{maxWidth:'80%', margin:'20px auto 0px'}} />
+        <img src={groupPhoto} alt="Campaign participants" className="max-h-[320px] sm:max-h-[45vh] w-auto mt-6 text-center" style={{margin:'0px auto 0px', position:'absolute', bottom: '4%', left: '50%', transform: 'translateX(-50%)'}} />
       </div>
     </PageLayout>
   );
